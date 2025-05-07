@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Safety in Government Facilities</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Background Styling */
+        body {
+            background: url('https://i.pinimg.com/736x/7e/f8/51/7ef851def4529b484785ca3a7e20a92d.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #ff4d4d !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Overlay Styling */
+        .overlay {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-group .btn-custom {
+            margin: 5px;
+        }
+
+        /* Card Styling */
+        .card {
+            border: none;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        .btn-danger:hover {
+            background-color: #ff3333;
+        }
+
+        .btn-primary:hover {
+            background-color: #3366ff;
+        }
+
+        .btn-success:hover {
+            background-color: #33cc33;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-links a, .social-icons a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover, .footer-links a:hover {
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">🔥 Fire Safety in Government Facilities</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'fire_incidents' %}">Fire Incidents</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'emergency_response' %}">Emergency Response</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'fire_training' %}">Training & Awareness</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'compliance_checks' %}">Compliance Checks</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="container hero">
+        <h1>Welcome to Fire Safety in Government Facilities</h1>
+    </div>
+
+    <!-- Overlay Section -->
+    <div class="overlay">
+        <h1>Welcome, {{ user.username }}!</h1>
+        <p>You are now logged in to the <strong>Fire Safety in Government Facilities</strong>.</p>
+        <p>Manage compliance, fire incident, Training, and emergency response details all in one place.</p>
+
+        <div class="btn-group mt-4">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn btn-danger btn-custom">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary btn-custom">Login</a>
+                <a href="{% url 'signup' %}" class="btn btn-success btn-custom">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <div class="footer-links">
+                <a href="{% url 'fire_incidents' %}">Fire Incidents</a> |
+                <a href="{% url 'emergency_response' %}">Emergency Response</a> |
+                <a href="{% url 'fire_training' %}">Training & Awareness</a> |
+                <a href="{% url 'compliance_checks' %}">Compliance Checks</a>
+            </div>
+            <div class="social-icons mt-3">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="mt-3">&copy; 2024 Fire Safety in Government Facilities | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

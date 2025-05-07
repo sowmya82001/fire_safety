@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Incidents</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: url('https://i.pinimg.com/736x/a3/00/e3/a300e3affe36536246f040f951b411f2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+       /* Navbar Styling */
+       .navbar {
+            background-color: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #ff4d4d !important;
+        }
+
+
+
+       
+
+        h1 {
+            text-align: center;
+            color:white;
+        }
+
+        table {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: #ff4d4d;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        td {
+            text-align: center;
+            padding: 10px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 77, 77, 0.2);
+        }
+
+        .status-pass {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .status-fail {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+         /* Footer Styling */
+         footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff4d4d;
+        }
+
+        .social-icons a {
+            color: #bbb;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">🔥 Fire Safety in Government Facilities</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'fire_incidents' %}">Fire Incidents</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'emergency_response' %}">Emergency Response</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'fire_training' %}">Training & Awareness</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'compliance_checks' %}">Compliance Checks</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div class="container">
+        <h1>📋 Compliance Checks</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Inspection Date</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for check in checks %}
+                    <tr>
+                        <td>{{ check.location }}</td>
+                        <td>{{ check.inspection_date }}</td>
+                        <td>
+                            {% if check.status == "Pass" %}
+                                <span class="status-pass">✔ Pass</span>
+                            {% else %}
+                                <span class="status-fail">❌ Fail</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ check.remarks }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+   
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    </body>
+    </html>
+    

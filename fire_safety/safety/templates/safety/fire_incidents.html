@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Incidents</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: url('https://i.pinimg.com/736x/19/9b/8c/199b8c403351b4ea1da926523351720f.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+
+       /* Navbar Styling */
+       .navbar {
+            background-color: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .nav-link:hover {
+            color: #ff4d4d !important;
+        }
+
+
+        .table-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+         /* Footer Styling */
+         footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff4d4d;
+        }
+
+        .social-icons a {
+            color: #bbb;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">🔥 Fire Safety in Government Facilities</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'fire_incidents' %}">Fire Incidents</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'emergency_response' %}">Emergency Response</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'fire_training' %}">Training & Awareness</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'compliance_checks' %}">Compliance Checks</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <!-- Fire Incidents Section -->
+    <div class="container">
+        <h1 class="text-center my-4">🔥 Fire Incidents</h1>
+        <div class="table-container shadow-lg">
+            <table class="table table-striped table-bordered text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Location</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for incident in incidents %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ incident.location }}</td>
+                        <td>
+                            <span class="badge {% if incident.severity == 'High' %}bg-danger{% elif incident.severity == 'Medium' %}bg-warning{% else %}bg-success{% endif %}">
+                                {{ incident.severity }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge {% if incident.status == 'Active' %}bg-danger{% elif incident.status == 'Under Control' %}bg-warning{% else %}bg-success{% endif %}">
+                                {{ incident.status }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'home' %}" class="btn btn-outline-light">🔙 Back to Home</a>
+        </div>
+    </div>
+
+  
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
